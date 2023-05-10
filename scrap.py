@@ -14,7 +14,6 @@ from selenium.webdriver.chrome.service import Service
 from webdriver_manager.chrome import ChromeDriverManager
 import pandas_gbq as pdgbq
 from google.oauth2 import service_account
-
 import re
 import time
 
@@ -126,5 +125,6 @@ else:
 
 df_final = df_final.reset_index(drop=True)
 
-chave = service_account.Credentials.from_service_account_file('arquivochave-gcp.json')
-df_final.to_gbq("raspagem.scrap", project_id='aula-gcp-arruda', if_exists="replace", credentials=chave)
+# chave = service_account.Credentials.from_service_account_file('arquivochave-gcp-live.json')
+nome_arquivo = 'raspagem_scrap.xlsx'
+df_final.to_excel(nome_arquivo, index=False)
